@@ -1,0 +1,27 @@
+{
+  "name": "notes.js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha --compilers js:babel-core/register test/"
+  },
+  "keywords": [
+    "music",
+    "notes",
+    "musical"
+  ],
+  "author": "chrisdfe",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  },
+  "dependencies": {
+    "babel-cli": "^6.24.1",
+    "frequency-map": "^1.0.0",
+    "lodash": "^4.17.4"
+  }
+}
