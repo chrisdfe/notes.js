@@ -1,1 +1,3 @@
-# Frequency Map
+# Notes.js
+
+## Installation
