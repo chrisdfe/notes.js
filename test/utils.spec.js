@@ -10,17 +10,12 @@ describe('flipArrayAtIndex', () => {
     expect(flipArrayAtIndex).to.be.a.function;
   });
 
-  it('returns a function', () => {
-    const flipArrayAt = flipArrayAtIndex([1]);
-    expect(flipArrayAt).to.be.a.function;
-  });
-
   it('correctly flips an array at the specified index', () => {
-    const flipNumbers = flipArrayAtIndex([1, 2, 3, 4, 5]);
+    const arr = [1, 2, 3, 4, 5];
 
-    expect(flipNumbers(0)).to.deep.equal([1, 2, 3, 4, 5]);
-    expect(flipNumbers(2)).to.deep.equal([3, 4, 5, 1, 2]);
-    expect(flipNumbers(4)).to.deep.equal([5, 1, 2, 3, 4]);
+    expect(flipArrayAtIndex(arr, 0)).to.deep.equal([1, 2, 3, 4, 5]);
+    expect(flipArrayAtIndex(arr, 2)).to.deep.equal([3, 4, 5, 1, 2]);
+    expect(flipArrayAtIndex(arr, 4)).to.deep.equal([5, 1, 2, 3, 4]);
   });
 });
 
@@ -45,16 +40,10 @@ describe('tryKeys', () => {
     expect(tryKeys).to.be.a.function;
   });
 
-  it('returns a function', () => {
-    const tryFrequencyKeys = flipArrayAtIndex({ 'A': 440 });
-    expect(tryFrequencyKeys).to.be.a.function;
-  });
-
   it('returns the value of the first existing key', () => {
-    const tryFrequencyKeys = tryKeys(frequencies);
-
-    expect(tryFrequencyKeys(['Db', 'C#'])).to.equal(frequencies['C#']);
-    expect(tryFrequencyKeys(['nothing', 440, 'G'])).to.equal(frequencies.G);
-    expect(tryFrequencyKeys(['nothing', 'missing', 123])).to.be.undefined;
+    expect(tryKeys(frequencies, ['Db', 'C#'])).to.equal(frequencies['C#']);
+    expect(tryKeys(frequencies, ['Bb', 'A#'])).to.equal(frequencies['A#']);
+    expect(tryKeys(frequencies, ['nothing', 440, 'G'])).to.equal(frequencies.G);
+    expect(tryKeys(frequencies, ['nothing', 'missing', 123])).to.be.undefined;
   });
 });

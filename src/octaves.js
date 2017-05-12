@@ -1,3 +1,4 @@
-import range from 'lodash/fp/range';
+import _ from './lib/lodash';
 
-export const octaves = range(0, 9);
+// 0 - 8
+export const octaves = _.range(0, 9);

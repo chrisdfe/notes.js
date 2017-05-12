@@ -1,6 +1,4 @@
-import isUndefined from 'lodash/fp/isUndefined';
-import pipe from 'lodash/fp/pipe';
-import mapValues from 'lodash/fp/mapValues';
+import _ from './lib/lodash';
 
 import raw from './raw/frequencies';
 
@@ -13,7 +11,7 @@ export const inOctave = octave => (
 );
 
 export const noteInAllOctaves = note => (
-  mapValues(octave => octave[note])(raw)
+  _.mapValues(raw, octave => octave[note])
 );
 
 export const get = (...args) => {
@@ -25,7 +23,7 @@ export const get = (...args) => {
     [, note, octave] = /(\w[b|#]?)(\d)/.exec(args[0]);
   }
 
-  if (!isUndefined(note) && !isUndefined(octave)) {
+  if (!_.isUndefined(note) && !_.isUndefined(octave)) {
     return raw[octave][note];
   }
 };

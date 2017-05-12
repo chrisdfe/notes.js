@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import modes from '../src/modes';
+import * as modes from '../src/modes';
 
 describe('modes', () => {
 
@@ -10,7 +10,7 @@ describe('modes', () => {
     // intervalsFor('phrygian_dominant') => [0, 1, 4, 5, 6, 7]
   })
 
-  desribe('#mode', () => {
+  describe('#mode', () => {
     // factory function to define your own scale, with an array of intervals:
     // registerMode('Phrygian Dominant', [0, 1, 4, 5, 6, 7])('C', 4)
     // registerMode('phrygian_dominant', 'Phrygian Dominant', [0, 1, 4, 5, 6, 7])('C', 4)
@@ -30,12 +30,23 @@ describe('modes', () => {
       })
 
       it('returns an array of letters', () => {
-        const result = chromatic('C');
+        const result = chromatic('D');
 
         expect(result).to.exist;
         expect(result).to.be.an.array;
         expect(result.length).to.equal(12);
         expect(result[0]).to.be.a.string;
+
+        console.log('chromatic result', result);
+      })
+
+
+      it('returns the correct notes', () => {
+        const F = chromatic('F');
+        expect(F).to.deep.equal(['F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E'])
+
+        const D = chromatic('D');
+        expect(D).to.deep.equal(['D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db'])
       })
     });
 
@@ -47,7 +58,7 @@ describe('modes', () => {
         expect(chromaticAll).to.be.an.object;
       })
 
-      it('the correct data', () => {
+      it('has the correct data', () => {
         expect(chromaticAll).to.include.keys(['C', 'Db', 'D', 'Eb', 'B']);
         expect(Object.keys(chromaticAll).length).to.equal(12);
 

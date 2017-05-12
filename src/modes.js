@@ -1,37 +1,28 @@
-import pipe from 'lodash/fp/pipe';
-import mapValues from 'lodash/fp/mapValues';
-import map from 'lodash/fp/map';
-import assignInAll from 'lodash/fp/assignInAll';
-import keys from 'lodash/fp/keys';
-
+import _ from './lib/lodash';
 import raw from './raw/modes';
-import * as notes from './notes';
+import { notes } from './notes';
 
 import { flipArrayAtIndex } from './utils';
 
-const flipNotesAtIndex = flipArrayAtIndex(notes.notes);
-
-const mapModeKey = key => (
-  mapValues(key)(raw)
+const flipNotesAtIndex = index => (
+  flipArrayAtIndex(notes, index)
 );
 
-export const intervals = mapModeKey('intervals');
-export const names = mapModeKey('name');
-export const modeNames = keys(raw);
+export const intervals = _.mapValues(raw, 'intervals');
+export const names = _.mapValues(raw, 'name');
+export const handles = _.keys(raw);
 
 // chromatic
 export const chromatic = rootNote => (
-  pipe(
-    note => notes.notes.indexOf(note),
-    flipNotesAtIndex,
-  )(rootNote)
+  flipNotesAtIndex(notes.indexOf(rootNote))
 );
 
 export const chromaticAll = (
-  pipe(
-    map(rootNote => ({ [rootNote]: chromatic(rootNote) })),
-    assignInAll,
-  )(notes.notes)
+  _.chain(notes)
+    .reduce((total, rootNote) => (
+      _.assign(total, { [rootNote]: chromatic(rootNote) })
+    ), {})
+    .value()
 );
 
 // const getMode = mode => (
