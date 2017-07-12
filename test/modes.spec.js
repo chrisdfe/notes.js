@@ -3,7 +3,7 @@ import * as modes from '../src/modes';
 
 describe('modes', () => {
 
-  describe('#intervalsFor', () => {
+/*  describe('#intervalsFor', () => {
     // intervalsFor('chromatic') => [0, 1, 2, ...]
     // intervalsFor('aeolian') => [0, 2, 3, ...]
     // After 'registerMode',
@@ -36,10 +36,7 @@ describe('modes', () => {
         expect(result).to.be.an.array;
         expect(result.length).to.equal(12);
         expect(result[0]).to.be.a.string;
-
-        console.log('chromatic result', result);
       })
-
 
       it('returns the correct notes', () => {
         const F = chromatic('F');
@@ -73,6 +70,6 @@ describe('modes', () => {
         });
       })
     });
-  })
+  })*/
 
 });

@@ -1,9 +1,9 @@
 import { expect } from 'chai';
-import * as notes from '../src/notes';
+import notes from '../src/notes';
 
 describe('notes', () => {
 
-  describe('all', () => {
+/*  describe('all', () => {
     it('exists', () => {
       expect(notes.all).not.to.be.null;
       expect(notes.all).to.be.an.array;
@@ -31,5 +31,16 @@ describe('notes', () => {
       expect(result.length).to.equal(12);
       expect(result[0]).to.have.all.keys(['note', 'octave', 'frequency']);
     })
-  });
+  });*/
+
+  // describe('modesForKey', () => {
+  //   it('exists', () => {
+  //     expect(notes.modesForKey).to.exist;
+  //     expect(notes.modesForKey).to.be.a.function;
+  //   });
+
+  //   it('does the right thing', () => {
+  //     console.log(notes.modesForKey('B'));
+  //   })
+  // });
 });

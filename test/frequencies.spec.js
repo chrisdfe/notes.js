@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import * as frequencies from '../src/frequencies';
+import frequencies from '../src/frequencies';
 
 describe('frequencies', () => {
   describe('get', () => {
@@ -22,6 +22,7 @@ describe('frequencies', () => {
       expect(frequencies.get('A#8')).to.equal(7458.62)
     })
 
-    it('gracefully handles a non-existent note or octave');
+    it('gracefully handles a non-existent note');
+    it('gracefully handles a non-existent octave');
   })
 });
