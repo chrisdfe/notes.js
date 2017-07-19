@@ -20,9 +20,6 @@ describe('Scales', () => {
       const results = Scales.fetch();
       expect(results).to.be.an.array;
       expect(results[0]).to.be.an.instanceof(Scale);
-
-      console.log('results');
-      console.log(Scales.fetch({ octave: 5, mode: 'harmonic_minor' })[0].notes);
     });
 
     it('filters scales correctly', () => {
