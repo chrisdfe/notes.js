@@ -1,6 +1,6 @@
 # Notes.js
 
-A scale, interval, and frequency mappings
+Scale, interval, and frequency mappings
 
 ## Installation
 
