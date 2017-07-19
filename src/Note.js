@@ -5,8 +5,10 @@ import { getNoteParams } from './utils';
 class Note {
 
   // TODO - support a single argument as well (e.g 'C#4')
-  constructor(...args) {
-    const { octave, note } = getNoteParams(...args);
+  constructor({ note, octave, interval }) {
+    if (!_.isUndefined(interval)) {
+      this.interval = interval;
+    }
 
     const frequency = frequencies.get(note, octave);
 

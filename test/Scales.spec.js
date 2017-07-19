@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import { expect } from 'chai';
 import Scales from '../src/Scales';
+import Scale from '../src/Scale';
 
 describe('Scales', () => {
 
@@ -16,10 +17,15 @@ describe('Scales', () => {
     });
 
     it('returns an array of Scales', () => {
-      expect(Scales.fetch()).to.be.an.array;
+      const results = Scales.fetch();
+      expect(results).to.be.an.array;
+      expect(results[0]).to.be.an.instanceof(Scale);
+
+      console.log('results');
+      console.log(Scales.fetch({ octave: 5, mode: 'harmonic_minor' })[0].notes);
     });
 
-    it('retrives values correctly', () => {
+    it('filters scales correctly', () => {
       [
         { rootNote: 'D', mode: 'mixolydian' },
         { rootNote: 'B' },

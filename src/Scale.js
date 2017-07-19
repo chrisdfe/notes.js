@@ -1,5 +1,5 @@
 import _ from './lib/lodash';
-
+import Note from './Note';
 import { notesForScale } from './notes';
 
 class Scale {
@@ -10,7 +10,15 @@ class Scale {
     this.mode = mode;
     this.octave = octave;
 
-    this.notes = notesForScale(this.rootNote, this.intervals);
+    this.rawNotes = notesForScale(this.rootNote, this.intervals);
+
+    this.notes = this.rawNotes.map((note, index) => (
+      new Note({
+        note,
+        interval: this.intervals[index],
+        octave: this.octave
+      })
+    ));
   }
 }
 
