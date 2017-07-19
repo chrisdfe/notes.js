@@ -2,35 +2,30 @@ import _ from './lib/lodash';
 
 import frequencyMap from 'frequency-map';
 import frequencyOctaveMap from 'frequency-map/maps/octaves';
+import { getNoteParams } from './utils';
 
 export default {
   all: frequencyMap,
 
+  // Supports these formats:
+  // get('C', 5)
+  // get('C5');
   get(...args) {
-    let note, octave;
+    let { note, octave } = getNoteParams(...args);
 
-    if (args.length === 2) {
-      [note, octave] = args;
-    } else if (args.length === 1) {
-      // e.g 'C4', 'Bb8'
-      // TODO - test this for brittleness
-      [, note, octave] = /(\w[b|#]?)(\d)/.exec(args[0]);
+    // frequency-map splits C#/Db up into two separate fields ('C#' and 'Db')
+    note = note.split('/')[0];
+
+    if (octave < 0 || octave > 8) {
+      throw new Error('octave must be 0-8');
     }
 
-    if (!_.isUndefined(note) && !_.isUndefined(octave)) {
-      return frequencyOctaveMap[octave][note];
+    const frequency = frequencyOctaveMap[octave][note];
+
+    if (!frequency) {
+      throw new Error(`No frequency found for ${note}${octave}`);
     }
+
+    return frequency;
   },
-
-  getMany(arr) {
-    return arr.map(get);
-  }
 };
-
-// inOctave: octave => (
-//   frequencyOctaveMap[octave]
-// ),
-
-// export const noteInAllOctaves = note => (
-//   _.mapValues(frequencyOctaveMap, octave => octave[note])
-// );

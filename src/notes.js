@@ -3,9 +3,12 @@ import frequencies from './frequencies';
 import octaves from './octaves';
 import modes from './raw/modes';
 
-import { flipArrayAtIndex } from './utils';
+import {
+  flipArrayAtIndex,
+  parseNotation
+} from './utils';
 
-const majorKeys = {
+export const majorKeys = {
   C: [],
   G: [
     { F: '#' },
@@ -67,7 +70,7 @@ const majorKeys = {
   ],
 };
 
-const whiteNotes = [
+export const whiteNotes = [
   'C',
   'D',
   'E',
@@ -77,7 +80,7 @@ const whiteNotes = [
   'B'
 ];
 
-const blackNotes = [
+export const blackNotes = [
   'C#/Db',
   'D#/Eb',
   'F#/Gb',
@@ -85,7 +88,7 @@ const blackNotes = [
   'A#/Bb',
 ];
 
-const allNotes = [
+export const allNotes = [
   'C',
   'C#/Db',
   'D',
@@ -103,45 +106,14 @@ const allNotes = [
 // Returns the notes in order for a specified root note
 // e.g 'D' => ['D', 'Eb' ... 'C']
 //     'B' => ['B', 'C' ... 'Bb']
-const chromatics = allNotes.reduce((result, rootNote) => {
-  result[rootNote] = flipArrayAtIndex(allNotes, allNotes.indexOf(rootNote));
-  return result;
-}, {});
+export const chromatics = rootNote => (
+  flipArrayAtIndex(allNotes, allNotes.indexOf(rootNote))
+);
 
-function notesForOctave(octave) {
-  return _.map(notes, note => (
-    {
-      octave,
-      note,
-      frequency: frequencies.get(note, octave),
-    }
-  ))
+// e.g (C, [0, 2, 3, 10])
+//   => [C, D, Db, Bb]
+export function notesForScale(rootNote, intervals) {
+  const keyNotes = chromatics(rootNote);
+  return intervals.map(interval => keyNotes[interval]);
 }
 
-// const allNotes = (
-//   _.chain(octaves.all)
-//     .map(notesForOctave)
-//     .flatten()
-//     .value()
-// );
-
-// const keys = (
-//   _.chain(notes)
-//     .reduce((result, note) => {
-//       result[note] = modesForKey(note);
-//       return result;
-//     }, {})
-//     .value()
-// );
-
-export default {
-  majorKeys,
-  whiteNotes,
-  blackNotes,
-  allNotes,
-  // allNotes,
-  notesForOctave,
-  // modesForKey,
-  getChromatic,
-  // keys,
-};

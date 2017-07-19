@@ -1,13 +1,16 @@
+import _ from 'lodash/core';
 import frequencies from './frequencies';
+import { getNoteParams } from './utils';
 
 class Note {
 
+  // TODO - support a single argument as well (e.g 'C#4')
   constructor(...args) {
-  {
-      octave,
-      note,
-      frequency: frequencies.get(note, octave),
-    }
+    const { octave, note } = getNoteParams(...args);
+
+    const frequency = frequencies.get(note, octave);
+
+    Object.assign(this, { octave, note, frequency });
   }
 }
 
