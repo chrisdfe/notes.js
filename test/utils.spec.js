@@ -1,11 +1,12 @@
 import { expect } from 'chai';
+import { describe, it } from 'mocha';
+
 import {
   flipArrayAtIndex,
-  tryKeys
+  tryKeys,
 } from '../src/utils';
 
 describe('utils', () => {
-
   describe('#flipArrayAtIndex', () => {
     it('exists', () => {
       expect(flipArrayAtIndex).to.exist;
@@ -46,7 +47,7 @@ describe('utils', () => {
       expect(tryKeys(frequencies, ['Db', 'C#'])).to.equal(frequencies['C#']);
       expect(tryKeys(frequencies, ['Bb', 'A#'])).to.equal(frequencies['A#']);
       expect(tryKeys(frequencies, ['nothing', 440, 'G'])).to.equal(frequencies.G);
-      expect(tryKeys(frequencies, ['nothing', 'missing', 123])).to.be.undefined;
+      expect(tryKeys(frequencies, ['nothing', 'missing', 123])).to.be.null;
     });
   });
 });

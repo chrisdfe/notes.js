@@ -1,7 +1,5 @@
-import _ from './lib/lodash';
-
 import frequencyMap from 'frequency-map';
-import frequencyOctaveMap from 'frequency-map/maps/octaves';
+import frequencyOctaveMap from 'frequency-map/maps/octaves.json';
 import { getNoteParams } from './utils';
 
 export default {
@@ -11,7 +9,9 @@ export default {
   // get('C', 5)
   // get('C5');
   get(...args) {
-    let { note, octave } = getNoteParams(...args);
+    const noteParams = getNoteParams(...args);
+    let { note } = noteParams;
+    const { octave } = noteParams;
 
     // frequency-map splits C#/Db up into two separate fields ('C#' and 'Db')
     note = note.split('/')[0];

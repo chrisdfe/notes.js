@@ -1,20 +1,17 @@
-import _ from './lib/lodash'
+import _ from './lib/lodash';
 import rawModes from './raw/modes';
 import Octaves from './Octaves';
 import Scale from './Scale';
 
-import {
-  allNotes,
-  notesForScale,
-} from './notes';
+import { allNotes } from './notes';
 
-const allScales = (function() {
-  let result = [];
+const allScales = (() => {
+  const result = [];
 
   allNotes.forEach((rootNote) => {
     Octaves.forEach((octave) => {
       _.each(rawModes, ({ name, intervals }, mode) => {
-        result.push(new Scale({ rootNote, octave, name, intervals, mode }))
+        result.push(new Scale({ rootNote, octave, name, intervals, mode }));
       });
     });
   });
@@ -23,13 +20,13 @@ const allScales = (function() {
 })();
 
 class Scales {
-
-  fetch(params = {}) {
+  static fetch(params = {}) {
     return _.filter(allScales, params);
   }
 
   // TODO
-  register(handle, intervals) {
+  /*
+  static register(handle, intervals) {
     if (!handle) {
       throw new Error('"handle" param is required');
     }
@@ -38,6 +35,7 @@ class Scales {
       throw new Error('"intervals" param is required');
     }
   }
+  */
 }
 
-export default new Scales();
+export default Scales;

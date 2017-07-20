@@ -1,12 +1,4 @@
-import _ from './lib/lodash'
-import frequencies from './frequencies';
-import octaves from './octaves';
-import modes from './raw/modes';
-
-import {
-  flipArrayAtIndex,
-  parseNotation
-} from './utils';
+import { flipArrayAtIndex } from './utils';
 
 export const majorKeys = {
   C: [],
@@ -77,7 +69,7 @@ export const whiteNotes = [
   'F',
   'G',
   'A',
-  'B'
+  'B',
 ];
 
 export const blackNotes = [

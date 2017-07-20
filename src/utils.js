@@ -1,4 +1,4 @@
-import _ from './lib/lodash'
+import _ from './lib/lodash';
 
 export function parseNotation(notation) {
   // TODO - make less brittle
@@ -21,22 +21,23 @@ export function flipArrayAtIndex(arr, index) {
   const front = arr.slice(0, index);
   const back = arr.slice(index);
   return back.concat(front);
-};
+}
 
 //
 export function tryKeys(obj, keys) {
-  for (let key of keys) {
-    let value = obj[key];
+  const existingKey = keys.find(key => !_.isUndefined(obj[key]));
 
-    if (!_.isUndefined(value)) {
-      return value;
-    }
+  if (existingKey) {
+    return obj[existingKey];
   }
-};
+
+  return null;
+}
 
 // TODO - better name
 export function getNoteParams(...args) {
-  let note, octave;
+  let note;
+  let octave;
 
   if (args.length >= 2) {
     [note, octave] = args;
