@@ -23,6 +23,10 @@ class Scales {
   static fetch(params = {}) {
     return _.filter(allScales, params);
   }
+
+  static find(params = {}) {
+    return _.find(allScales, params);
+  }
 }
 
 export default Scales;
