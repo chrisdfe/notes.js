@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _ from './lib/lodash'
 import rawModes from './raw/modes';
 import Octaves from './Octaves';
 import Scale from './Scale';

@@ -1,4 +1,4 @@
-import _ from 'lodash/core';
+import _ from './lib/lodash'
 
 export function parseNotation(notation) {
   // TODO - make less brittle

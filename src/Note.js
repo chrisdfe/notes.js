@@ -1,4 +1,4 @@
-import _ from 'lodash/core';
+import _ from './lib/lodash'
 import frequencies from './frequencies';
 import { getNoteParams } from './utils';
 
