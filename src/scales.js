@@ -23,19 +23,6 @@ class Scales {
   static fetch(params = {}) {
     return _.filter(allScales, params);
   }
-
-  // TODO
-  /*
-  static register(handle, intervals) {
-    if (!handle) {
-      throw new Error('"handle" param is required');
-    }
-
-    if (!intervals) {
-      throw new Error('"intervals" param is required');
-    }
-  }
-  */
 }
 
 export default Scales;
