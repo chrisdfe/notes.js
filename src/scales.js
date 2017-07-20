@@ -13,14 +13,8 @@ const allScales = (function() {
 
   allNotes.forEach((rootNote) => {
     Octaves.forEach((octave) => {
-      _.each(rawModes, ({ name, intervals }, handle) => {
-        result.push(new Scale({
-          rootNote,
-          octave,
-          name,
-          intervals,
-          mode: handle,
-        }))
+      _.each(rawModes, ({ name, intervals }, mode) => {
+        result.push(new Scale({ rootNote, octave, name, intervals, mode }))
       });
     });
   });
